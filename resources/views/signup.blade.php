@@ -158,6 +158,11 @@
                             <span>{{ $message }}</span>
                         </div>
                     @enderror
+                    @error('birth')
+                        <div class="alert alert-danger">
+                            <span>{{ $message }}</span>
+                        </div>
+                    @enderror
                 </td>
             </tr>
         </table>

@@ -247,6 +247,7 @@ class MainController extends Controller
             'num-rue.regex' => 'Le numéro de rue peux contenir que des chiffres',
             'ville.regex' => 'La ville ne peux pas contenir de chiffre et dois faire max 50 caractères',
             'npa.regex' => 'Le npa doit être entre 1000 et 9658',
+            'birth.regex' => "Vous n'avez pas l'âge minimum pour créer un compte Namek.",
 
          ]);
 

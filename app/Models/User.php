@@ -32,7 +32,7 @@ class User extends Authenticatable
 
     public function function()
     {
-        return $this->belongsTo(Functions::class);
+        return $this->belongsTo(Functions::class, 'function_id', 'id_function');
     }
 
     public function setPasswordAttribute($password)

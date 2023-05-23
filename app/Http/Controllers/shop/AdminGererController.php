@@ -50,6 +50,7 @@ class AdminGererController extends Controller
         $user->username = $request->input('username');
         $user->email = $request->input('email');
         $user->birth_date = $request->input('birth');
+        $user->function_id = $request->input('role');
         $user->save();
 
         $address = $user->address;

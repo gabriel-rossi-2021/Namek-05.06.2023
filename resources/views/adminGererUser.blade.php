@@ -83,6 +83,14 @@
                                     <label for="birth"><b>Date de naissance</b></label><br>
                                     <input type="date" placeholder="Date de naissance" name="birth" id="input" value="{{ $updateUser->birth_date }}" required>
                                 </td>
+                                <td>
+                                    <label for="category"> <b>Rôle</b></label><br>
+                                    <select id="input" name="role">
+                                        <option value="3" {{ $updateUser->function->name_function == 'client' ? 'selected' : '' }}>Client</option>
+                                        <option value="2" {{ $updateUser->function->name_function == 'moderateur' ? 'selected' : '' }}>Modérateur</option>
+                                        <option value="1" {{ $updateUser->function->name_function == 'admin' ? 'selected' : '' }}>Administrateur</option>
+                                    </select>
+                                </td>
                             </tr>
                         </table>
                         <table>
