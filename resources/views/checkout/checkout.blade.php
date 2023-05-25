@@ -70,6 +70,9 @@
                             </table>
                         </div>
                         <h5>Résumé : </h5>
+                        @if(Session::has('codePromo'))
+                            <p id="prix-ttc">CODE PROMO : {{number_format($reduction, 2)}} CHF</p> </p>
+                        @endif
                         <p id="prix-ttc">TOTAL HT : {{number_format($total_ht_panier, 2)}} CHF</p>
                         <p id="prix-ttc">FRAIS TVA : {{number_format($tva, 2)}} CHF</p>
                         <h6 id="prix-ttc">TOTAL TTC : {{number_format($total_ttc_panier, 2)}} CHF</h6>

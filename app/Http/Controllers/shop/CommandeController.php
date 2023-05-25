@@ -27,6 +27,16 @@ class CommandeController extends Controller
         $tva = $total_ttc_panier / (1 + 0.077) * 0.077;
         $total_ht_panier = $total_ttc_panier - $tva;
 
+        // CODE PROMO / REDUCTION
+        $reduction = 0;
+        $cartConditions = Cart::getConditions();
+        foreach($cartConditions as $condition){
+            if($condition->getName() === 'Code Promo'){
+                $reduction = abs($condition->getValue());
+                break;
+            }
+        }
+
         // Stocker les ID des produits dans un tableau
         $product_ids = array();
         foreach($content as $item){
@@ -68,6 +78,11 @@ class CommandeController extends Controller
                 'created_at' => now(),
                 'updated_at' => now(),
             ]);
+
+            // Décrémenter le stock disponible des produits commandés
+            $product = Product::find($item->get('id'));
+            $product->available = $product->available - $item->quantity;
+            $product->save();
         }
 
         $data = [
@@ -77,6 +92,7 @@ class CommandeController extends Controller
             'tva' => $tva,
             'total_ttc_panier' => $total_ttc_panier,
             'total_ht_panier' => $total_ht_panier,
+            'reduction' => $reduction,
             'order_number' => $order_number,
             'date_achat' => $order->date_purchase
         ];

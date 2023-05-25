@@ -127,6 +127,12 @@
         </table>
         <table id="table-info-prix">
             <tbody>
+            @if(Session::has('codePromo'))
+                <tr>
+                    <td style="font-weight: bold;padding:5px 0px">CODE PROMO</td>
+                    <td style="text-align:right;padding:5px 0px;font-size:16px;">{{number_format($reduction, 2)}} CHF</td>
+                </tr>
+            @endif
             <tr>
                 <td style="font-weight: bold;padding:5px 0px">TOTAL HT</td>
                 <td style="text-align:right;padding:5px 0px;font-size:16px;">{{number_format($total_ht_panier, 2)}} CHF</td>

@@ -39,6 +39,17 @@ class CheckoutController extends Controller
         // TOTAL HT
         $total_ht_panier = $total_ttc_panier - $tva;
 
+        // REDUCTION
+        $reduction = 0;
+        // OBTENIR VALEUR DE LA REDUCTION
+        $cartConditions = Cart::getConditions();
+        foreach($cartConditions as $condition){
+            if($condition->getName() === 'Code Promo'){
+                $reduction = abs($condition->getValue());
+                break;
+            }
+        }
+
         // PRIX HORS TAXE DE CHAQUE PRODUIT DANS LE PANIER
         $price_ht = array();
 
@@ -46,7 +57,7 @@ class CheckoutController extends Controller
             $price_ht[] = number_format($item->getPriceSum() / (1 + 0.077), 3, '.', '');
         }
 
-        return view('checkout.checkout', ['user' => $user], compact('content', 'total_ttc_panier', 'total_ht_panier', 'tva', 'price_ht'));
+        return view('checkout.checkout', ['user' => $user], compact('content', 'total_ttc_panier', 'total_ht_panier', 'tva', 'price_ht', 'reduction'));
     }
 
     public function add_order(){
