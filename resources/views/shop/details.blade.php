@@ -155,7 +155,7 @@
                     @for ($i = $details->opinions[0]->notation + 1; $i <= 5; $i++)
                         <i class="far fa-star"></i>
                     @endfor<br>
-                    <span>{{ $details->opinions[0]->created_at }}</span>
+                    <span>{{ date_format(date_create($details->opinions[0]->created_at), 'd.m.y - h:i:s') }}</span>
                 </div>
             </div>
             <!-- comments -->
@@ -187,7 +187,7 @@
                         @for ($i = $opinion->notation + 1; $i <= 5; $i++)
                             <i class="far fa-star"></i>
                         @endfor<br>
-                        <span>{{ $opinion->created_at }}</span>
+                        <span>{{ date_format(date_create($opinion->created_at), 'd.m.y - h:i:s') }}</span>
                     </div>
                 </div>
                 <!-- comments -->

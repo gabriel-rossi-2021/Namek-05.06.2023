@@ -24,6 +24,10 @@ php artisan serve<br>
 <h2>Compte admin :</h2>
 <h4>email : angelo.rogeiro@eduvaud.ch</h4>
 <h4>MDP : *****</h4>
+
 <h2>Compte client :</h2>
 <h4>email : fsteph@namek.ch</h4>
 <h4>MDP : alpha-1</h4>
+
+<h2>Code promo : </h2>
+<h4 style="color:red;">M151 (25%) </h4>
