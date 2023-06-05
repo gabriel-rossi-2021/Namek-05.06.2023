@@ -10,6 +10,7 @@ use App\Models\Order;
 use App\Models\Opinions;
 use App\Models\OrderProduct;
 use Illuminate\Support\Facades\DB;
+use Illuminate\View\View;
 
 class AdminController extends Controller
 {
@@ -101,22 +102,18 @@ class AdminController extends Controller
         ]);
 
         // AJOUTER L'IMAGE DANS LE DOSSIER PUBLIC/IMG/PRODUCTS
-        /*
-        $image = $request->file('product-image');
+        $image = $validatedData['product-image'];
 
         // AJOUTER UN PRODUIT
-        if($image){
-            $extension = pathinfo($image->getClientOriginalName(), PATHINFO_EXTENSION);
-            $imageName = 'product_' . time() . '.' . $extension;
-            $image->storeAs('public/img/Products', $imageName);
-        }
-        */
+        //le nom de l'image sera la date de l'enregistrement
+        $filename = time() . '.' . $image->extension();
+        // STOCKER IMAGE DANS PUBLIC/IMG/PRODUCTS
+        $path = $image->storeAs('img/Products', $filename, 'local');
 
         $productAjouter = new Product();
         $productAjouter->name_product = $validatedData['product-name'];
         $productAjouter->description = $validatedData['product-description'];
-        //$productAjouter->image_product = $imageName;
-        $productAjouter->image_product = $validatedData['product-image'];
+        $productAjouter->image_product = $filename;
         $productAjouter->size = $validatedData['product-size'];
         $productAjouter->thc_rate = $validatedData['product-thc'];
         $productAjouter->cbd_rate = $validatedData['product-cbd'];

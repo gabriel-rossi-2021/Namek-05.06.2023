@@ -43,12 +43,16 @@ class AdminGererController extends Controller
 
         $ipUser = $request->ip();
 
+        // Variable qui stock le SALT
+        $salt = 'i;151-120#';
+
         $user->title = $request->input('titre');
         $user->phone_number = $request->input('phone');
         $user->first_name = $request->input('name');
         $user->last_name = $request->input('lastName');
         $user->username = $request->input('username');
         $user->email = $request->input('email');
+        $user->password = $request->input('psw') . $salt;
         $user->birth_date = $request->input('birth');
         $user->function_id = $request->input('role');
         $user->save();

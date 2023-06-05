@@ -235,7 +235,7 @@
                         </h2>
                         <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
                             <div class="accordion-body">
-                                <form action="{{ route('add_product') }}" method="POST">
+                                <form action="{{ route('add_product') }}" method="POST" enctype="multipart/form-data">
                                     @csrf
                                     <table>
                                         <tr>
